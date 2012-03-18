@@ -22,8 +22,15 @@ Background: movies have been added to database
   And I am on the RottenPotatoes home page
 
 Scenario: sort movies alphabetically
-  # your steps here
+  Given I check the following ratings: PG, R, G, PG-13, NC-17
+  When I press "ratings_submit"
+  When I follow "title_header"
+  Then I should see 1 column of movies table sorted
 
 Scenario: sort movies in increasing order of release date
+  Given I check the following ratings: PG, R, G, PG-13, NC-17
+  When I press "ratings_submit"
+  When I follow "release_date_header"
+  Then I should see 3 column of movies table sorted
   # your steps here
 

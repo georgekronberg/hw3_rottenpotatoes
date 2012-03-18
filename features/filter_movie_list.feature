@@ -22,6 +22,10 @@ Background: movies have been added to database
   And  I am on the RottenPotatoes home page
   
 Scenario: restrict to movies with 'PG' or 'R' ratings
+  Given I check the following ratings: PG, R
+  And I uncheck the following ratings: G, PG-13, NC-17
+  When I press "ratings_submit"
+  Then I should see PG, R in Rating column of the table movies
   # enter step(s) to check the 'PG' and 'R' checkboxes
   # enter step(s) to uncheck all other checkboxes
   # enter step to "submit" the search form on the homepage
@@ -32,4 +36,7 @@ Scenario: no ratings selected
   # see assignment
 
 Scenario: all ratings selected
+  Given I check the following ratings: PG, R, G, PG-13, NC-17
+    When I press "ratings_submit"
+    Then I should see PG, R, G, PG-13, NC-17 in 2 column of the table movies
   # see assignment
